@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mvp-sample-front
+  labels:
+    appname: mvp-sample-front
+spec:
+  selector:
+    matchLabels:
+      appname: mvp-sample-front
+  replicas: 1
+  template:
+    metadata:
+      name: mvp-sample-front
+      labels:
+        appname: mvp-sample-front
+    spec:
+      containers:
+        - name: mvp-sample-front
+          image: bnkpoc/mvp-sample-front:1.0.0
+          imagePullPolicy: Always
+          env:
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: secret-mvp-sample-front
+                  key: JWT_SECRET
+            - name: AUTH_API_URI
+              valueFrom:
+                configMapKeyRef:
+                  name: config-mvp-sample-front
+                  key: AUTH_API_URI
+            - name: API_PRODUCT_URI
+              valueFrom:
+                configMapKeyRef:
+                  name: config-mvp-sample-front
+                  key: API_PRODUCT_URI
+            - name: PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: config-mvp-sample-front
+                  key: PORT
+          ports:
+            - name: port1
+              containerPort: 8081
+          resources:
+            requests:
+              cpu: 500m
+              memory: 1024Mi
+            limits:
+              cpu: 1000m
+              memory: 2048Mi

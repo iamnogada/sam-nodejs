@@ -1,0 +1,58 @@
+<%
+var readonlyControl = "";
+if(mode=="view") readonlyControl="readonly";
+%>
+		<form method="POST">
+			<% if(mode == "edit" || mode=="view") { %>
+			<div class="form-group">
+			<label for="id">ID:</label> 
+			<input type="text" name="id" size=8 value="<%= data.id %>" disabled>
+			</div>
+			<% } %>
+
+			<div class="form-group">
+			<label for="authorid">Author ID:</label> 
+			<% if(mode === "insert") { %>
+				<input type="text" name="author_id" value="<%= user.username %>" readonly>
+			<% } else { %>
+				<input type="text" name="author_id" value="<%= data.author_id %>" readonly>
+			<% } %>			
+			</div>
+			
+			<div class="form-group">
+			<label for="authorname">Author Name:</label> 
+			<% if(mode === "insert") { %>
+				<input type="text" name="author_name" value="<%= user.name %>" readonly>
+			<% } else { %>
+				<input type="text" name="author_name" value="<%= data.author_name %>" readonly>
+			<% } %>					
+			</div>
+						
+			<div class="form-group">
+				<label for="prod_name">상품이름</label> 
+				<input type="text" class="form-control" name="prod_name" 
+				<% if(mode == "edit" || mode=="view") { %>
+				value = "<%= data.prod_name %>"
+				<% } %>
+				<%=readonlyControl%>
+				>
+			</div>
+			<div class="form-group">
+				<label for="prod_no">상품번호</label> 
+				<input type="text" class="form-control" name="prod_no"
+				<% if(mode == "edit" || mode=="view") { %>
+				value = "<%= data.prod_no %>"
+				<% } %>
+				<%=readonlyControl%>
+				>
+			</div>
+			<div class="form-group">
+				<label for="prod_section">분류</label> 
+				<input type="text" class="form-control" name="prod_section"
+				<% if(mode == "edit" || mode=="view") { %>
+				value = "<%= data.prod_section %>"
+				<% } %>	
+				<%=readonlyControl%>
+				>
+			</div>
+		</form>

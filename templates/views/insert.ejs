@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>상품등록</title>
+<% include ../_helpers/html_header %>
+</head>
+<body>
+	<div class="container">
+		<h2>상품입력</h2>
+		<p/>	
+		<% include ../_helpers/form_entry %>
+		<button class="btn btn-success" id="btn1">저장하기</button>
+		&nbsp;
+		<button class="btn btn-success" id="btn2">취소하기</button>
+	</div>
+
+<script>
+$( function() {
+	$("#btn1").off().on( "click", () => {
+		document.forms[0].Action = "/insert";
+		document.forms[0].submit();
+	});
+	$("#btn2").off().on( "click", () => { history.back(); });
+});
+</script>
+</body>
+</html>

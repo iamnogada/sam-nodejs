@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mvp-sample-front
+spec:
+  type: ClusterIP
+  selector:
+    appname: mvp-sample-front
+  ports:
+    - name: port-mvp-sample-front
+      port: 8081
+      targetPort: 8090

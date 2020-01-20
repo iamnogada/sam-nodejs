@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<title>상품수정</title>
+<% include ../_helpers/html_header %>
+</head>
+<body>
+	<div class="container">
+		<h2>상품정보 수정</h2>
+		<p/>	
+		<% include ../_helpers/form_entry %>
+		<button class="btn btn-success" id="btn1">수정하기</button>
+		&nbsp;
+		<button class="btn btn-success" id="btn2">취소하기</button>
+	</div>
+	
+<script>
+$( function() {
+	$("#btn1").off().on( "click", () => {
+		document.forms[0].submit();
+	});
+	$("#btn2").off().on( "click", () => { history.back(); });
+});
+</script>	
+</body>
+</html>

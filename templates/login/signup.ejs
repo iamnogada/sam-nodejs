@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>회원가입</title>
+<% include ../_helpers/html_header %>
+<%
+let objPostData = {
+	"username": "",
+	"name": "",
+	"email": "",
+	"password": "",
+	"passwordConfirmation":""
+};
+
+let objResult = {
+	"success": true,
+	"msg": {
+		"username": { message: ""},
+		"name": { message: ""},
+		"email": { message: ""},
+		"password": { message: ""},
+		"passwordConfirmation":{ message: ""}
+	}	
+};
+
+if((typeof postData !== "undefined") && postData != null) {
+	objPostData = postData;
+}
+
+if((typeof result !== "undefined") && result != null) {
+	objResult.success = result.success;
+	for(let key in result.msg) {
+		objResult.msg[key].message = result.msg[key].message;
+	}
+};
+
+%>
+</head>
+<body>
+	<div class="container">
+		<h2>회원가입</h2>
+		<p/>	
+		<form method="POST" action="/signup">
+			<div class="form-group">
+				<label for="username">ID:</label> 
+				<input type="text" class="form-control" id="username" name="username" value="<%= objPostData.username %>">
+				<label><%= objResult.msg.username.message %></label>
+			</div>
+			<div class="form-group">
+				<label for="name">이름:</label> 
+				<input type="text" class="form-control" id="name" name="name" value="<%= objPostData.name %>">
+				<label><%= objResult.msg.name.message %></label>
+			</div>			
+			<div class="form-group">
+				<label for="email">email:</label> 
+				<input type="text" class="form-control" id="email" name="email" value="<%= objPostData.email %>">
+				<label><%= objResult.msg.email.message %></label>
+			</div>			
+			<div class="form-group">
+				<label for="password">Password:</label> 
+				<input type="password" class="form-control" id="password" name="password" value="<%= objPostData.password %>">
+				<label><%= objResult.msg.password.message %></label>
+			</div>
+			<div class="form-group">
+				<label for="passwordConfirmation">Password:</label> 
+				<input type="password" class="form-control" id="passwordConfirmation" name="passwordConfirmation" value="<%= objPostData.passwordConfirmation %>">
+				<label><%= objResult.msg.passwordConfirmation.message %></label>
+			</div>			
+		</form>
+		<button class="btn btn-success" id="btn1">Save</button>
+		&nbsp;
+		<button class="btn btn-success" id="btn2">Cancel</button>
+	</div>
+
+<script>
+$( function() {
+	//Save
+	$("#btn1").off().on( "click", () => {
+		document.forms[0].submit();
+	});
+	
+	//reset
+	$("#btn2").off().on( "click", () => { 
+		location.href = "/login";
+	});
+});
+
+if("<%= mode %>" === "post" && <%= objResult.success %> === true) {
+	alert("등록되었습니다. \n등록한 id와 암호로 로그인하여 주십시오.");
+	location.href = "/login";
+}
+
+</script>
+</body>
+</html>

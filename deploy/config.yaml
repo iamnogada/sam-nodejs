@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-mvp-sample-front
+data:
+  AUTH_API_URI: http://login-api:3000
+  API_PRODUCT_URI: http://mvp-sample-bizlogic:8888/api/products
+  PORT: "8090"
