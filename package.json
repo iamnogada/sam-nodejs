@@ -17,7 +17,7 @@
   },
   "homepage": "https://gitlab.com/happycloudpak/mvp-sample-front#readme",
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.4",
     "ejs": "^2.7.1",
